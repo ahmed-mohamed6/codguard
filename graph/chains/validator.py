@@ -1,14 +1,15 @@
 from dotenv import load_dotenv
+import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openrouter import ChatOpenRouter
 from pydantic import BaseModel, Field
 
 load_dotenv()
-#"nvidia/nemotron-3-super-120b-a12b:free"
+
+model = os.getenv("VALIDATOR_MODEL")
 
 llm = ChatOpenRouter(
-    #model="nvidia/nemotron-3-super-120b-a12b:free",
-    model="openai/gpt-oss-120b",
+    model=model,
     temperature=0,
 )
 

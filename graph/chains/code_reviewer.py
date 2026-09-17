@@ -1,54 +1,18 @@
 from dotenv import load_dotenv
+import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openrouter import ChatOpenRouter
-from pydantic import BaseModel, Field
+from graph.models.review import Review
+from graph.models.finding import Finding
+
 
 load_dotenv()
 
-#"nvidia/nemotron-3-super-120b-a12b:free"
+model = os.getenv("REVIEWER_MODEL")
 llm = ChatOpenRouter(
-    #model="nvidia/nemotron-3-super-120b-a12b:free",
-    model="openai/gpt-oss-120b",
+    model=model,
     temperature=0,
 )
-
-
-class Finding(BaseModel):
-    severity: int = Field(
-        ge=1,
-        le=10,
-        description="Severity of the issue from 1 to 10, where 1 is minimal and 10 is extremely severe."
-    )
-
-    category: str = Field(
-        description="Category of the issue: bug, security, performance, or code_quality."
-    )
-
-    description: str = Field(
-        description="Clear and concise description of the issue."
-    )
-
-    suggestion: str = Field(
-        description="Practical and actionable suggestion to fix the issue."
-    )
-    file:str = Field(
-        description="File path of the issue."
-    )
-    line:int = Field(
-        description="Line number of the issue."
-    )
-
-class Review(BaseModel):
-    """Structured review of the provided code."""
-
-    text: str = Field(
-        description="A concise overall review of the code."
-    )
-
-    findings: list[Finding] = Field(
-        description="Genuine and actionable issues identified in the code."
-    )
-
 
 structured_review = llm.with_structured_output(Review)
 

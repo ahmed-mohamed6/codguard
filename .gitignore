@@ -12,3 +12,5 @@ wheels/
 
 #Context
 AI CodeGuard — Project Context.md
+.dockerignore
+Dockerfile

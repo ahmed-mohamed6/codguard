@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openrouter import ChatOpenRouter
 from pydantic import BaseModel, Field
@@ -6,9 +7,10 @@ from pydantic import BaseModel, Field
 
 load_dotenv()
 
+model = os.getenv("DECIDER_MODEL")
 
 llm = ChatOpenRouter(
-    model="openai/gpt-oss-120b",
+    model=model,
     temperature=0,
 )
 
