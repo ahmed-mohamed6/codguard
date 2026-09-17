@@ -1,0 +1,7 @@
+REVIEW_CODE = "review_code"
+VALIDATE_FINDINGS = "validate_findings"
+GET_CONTEXT = "get_context"
+DECIDE_CONTEXT = "decide_context"
+GET_PR_FILES = "get_pr_files"
+HUMAN_APPROVAL = "human_approval"
+UPDATE_PULL_REQUEST = "update_pull_request"
