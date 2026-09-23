@@ -14,3 +14,5 @@ wheels/
 AI CodeGuard — Project Context.md
 .dockerignore
 Dockerfile
+uv.lock
+.idea
