@@ -49,7 +49,7 @@ If additional context is needed:
 
 If the provided code is sufficient:
 - Set needs_context to false.
-- Set file_path to null.
+
 
 Do not request additional context merely because it might be useful.
 Only request it when the current information is insufficient to make
